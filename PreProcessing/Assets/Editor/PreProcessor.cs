@@ -13,11 +13,10 @@ using System.IO;
 public class PreProcessor : MonoBehaviour {
     #region Fields
 
-    string assetsLocation = Application.dataPath;
+    static string assetsLocation = Application.dataPath;
 
     #endregion
-
-    [MenuItem("PreProcessor/Generate Folders")]
+    
     public static void GenerateFolders() {
         AssetDatabase.CreateFolder("Assets", "Materials");
         AssetDatabase.CreateFolder("Assets", "Textures");
@@ -27,9 +26,21 @@ public class PreProcessor : MonoBehaviour {
         AssetDatabase.CreateFolder("Assets", "Animations");
         AssetDatabase.CreateFolder("Assets/Animations", "AnimationControllers");
     }
-
+    
     static void GenerateFiles() {
-        using () {}
+        File.WriteAllText(assetsLocation + "/Materials/folderStructure.txt", "This folder is for storing materials.");
+        File.WriteAllText(assetsLocation + "/Textures/folderStructure.txt", "This folder is for storing textures.");
+        File.WriteAllText(assetsLocation + "/Prefabs/folderStructure.txt", "This folder is for storing prefabs.");
+        File.WriteAllText(assetsLocation + "/Scripts/folderStructure.txt", "This folder is for storing scripts.");
+        File.WriteAllText(assetsLocation + "/Scenes/folderStructure.txt", "This folder is for storing scenes.");
+        File.WriteAllText(assetsLocation + "/Animations/folderStructure.txt", "This folder is for storing raw animations.");
+        File.WriteAllText(assetsLocation + "/Animations/AnimationControllers/folderStructure.txt",
+                          "This folder is for storing animations.");
+    }
+
+    [MenuItem("PreProcessor/Generate Folder Structure")]
+    static void GenerateStructure() {
+        
     }
 
 }
